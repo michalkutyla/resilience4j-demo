@@ -1,3 +1,15 @@
 form a {
     margin-left: 5px;
 }
+
+.details {
+    margin-top: 20px;
+}
+
+.reviews {
+    margin-top: 20px;
+}
+
+.error {
+    color: crimson;
+}

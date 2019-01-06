@@ -11,7 +11,12 @@ public class ProductDetailsController {
 
     @RequestMapping("/details")
     public String details() {
-        return "Xiaomi Mi Notebook";
+        return dummyDetails;
     }
+
+    private static String dummyDetails = "{" +
+        "\"name\":\"Xiomi Mi Notebook\"," +
+        "\"description\":\"Uncompromising performance in an ultra light, ultra thin body.\"" +
+        "}";
 
 }

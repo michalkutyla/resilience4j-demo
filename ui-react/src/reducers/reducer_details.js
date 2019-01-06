@@ -12,7 +12,7 @@ export default function(state = {}, action) {
         console.log('here');
         details['error'] = action.payload.response.data.message;
       } else {
-        details['description'] = action.payload.data;
+        details['details'] = action.payload.data;
       }
 
       const newstate = { ...state, details: details };

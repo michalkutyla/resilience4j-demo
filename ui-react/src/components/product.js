@@ -17,23 +17,29 @@ class Product extends Component {
     if (!_.isEmpty(details)) {
       if (details.error) {
         return (
-          <div>
+          <div className="details">
             <h3>Product details:</h3>
-            <h4>Error occured while fetching product details</h4>
-            <div>Error message: {details.error}</div>
+            <div className="error">
+              Error occured while fetching product details: {details.error}
+            </div>
           </div>
         );
       } else {
         return (
-          <div>
+          <div className="details">
             <h3>Product details:</h3>
-            <div>{details.description}</div>
+            <div>
+              <b>Name:</b> {details.details.name}
+            </div>
+            <div>
+              <b>Description:</b> {details.details.description}
+            </div>
           </div>
         );
       }
     } else {
       return (
-        <div>
+        <div className="details">
           <h3>Product details:</h3>
           <ClipLoader loading={true} />
         </div>
