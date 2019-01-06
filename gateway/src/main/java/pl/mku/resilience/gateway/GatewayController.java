@@ -19,14 +19,9 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 public class GatewayController {
 
-    Bulkhead bulkhead = Bulkhead.of("My bulkhead",
-        BulkheadConfig.custom()
-            .maxConcurrentCalls(2)
-            .build());
-
     @RequestMapping(path = "/gateway/reviews", produces = "application/json")
     public String reviews() {
-        return bulkhead.executeSupplier(this::callReviewsService);
+        return callReviewsService();
     }
 
     private String callReviewsService() {
