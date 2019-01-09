@@ -1,23 +1,19 @@
 package pl.mku.resilience.reviewsservice;
 
+import java.util.Arrays;
+import java.util.List;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * REVIEWS
- */
 @RestController
 public class ReviewsController {
 
-    @RequestMapping("/reviews")
-    public String details() throws InterruptedException {
-        return dummyReviews;
+    @RequestMapping(path = "/reviews")
+    public List<String> details() {
+        return Arrays.asList(
+            "This product is great!",
+            "This product is worthless :(",
+            "I love this product :D");
     }
-
-    private static String dummyReviews = "[" +
-        "\"This product is great!\"," +
-        "\"This product is worthless :(\"," +
-        "\"I love this product :D\"" +
-        "]";
 
 }
