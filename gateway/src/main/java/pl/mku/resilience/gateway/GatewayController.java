@@ -1,5 +1,7 @@
 package pl.mku.resilience.gateway;
 
+import io.github.resilience4j.bulkhead.Bulkhead;
+import io.github.resilience4j.bulkhead.BulkheadConfig;
 import java.util.List;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,9 +12,11 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 public class GatewayController {
 
+    private Bulkhead bulkhead = Bulkhead.of("Reviews Bulkhead", BulkheadConfig.custom().maxConcurrentCalls(2).build());
+
     @RequestMapping(path = "/gateway/reviews")
     public List<String> reviews() {
-        return callReviewsService();
+        return bulkhead.executeSupplier(this::callReviewsService);
     }
 
     private List<String> callReviewsService() {
